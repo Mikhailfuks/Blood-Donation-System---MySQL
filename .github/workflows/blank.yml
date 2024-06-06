@@ -1,0 +1,176 @@
+CREATE TABLE Donors ( donor_id int PRIMARY KEY, Name varchar(200),age int,blood_type varchar(10), address varchar(200),contact_number varchar(20), gender varchar(40));
+
+CREATE TABLE Recipients (recipient_id int PRIMARY KEY,name VARCHAR(255),age int,blood_type VARCHAR(10),address VARCHAR(255),contact_number VARCHAR(20));
+
+CREATE TABLE BloodDonations (donation_id int PRIMARY KEY,donor_id int, recipient_id int, donation_date date, FOREIGN KEY (donor_id) REFERENCES Donors(donor_id),FOREIGN KEY (recipient_id) REFERENCES Recipients(recipient_id));
+
+CREATE TABLE BloodInventory (blood_id int PRIMARY KEY, blood_type VARCHAR(10), quantity int );
+
+CREATE TABLE BloodTypes (blood_type VARCHAR(10) PRIMARY KEY);
+
+CREATE TABLE Hospital (hospital_id int PRIMARY KEY,name VARCHAR(255),address VARCHAR(255), contact_number VARCHAR(20));
+
+INSERT INTO Donors (donor_id, name, age, blood_type, address, contact_number , gender)
+VALUES (1, 'Safwan Nasir', 20, 'A+', 'Banaglore', '123456', 'Male');
+INSERT INTO Donors (donor_id, name, age, blood_type, address, contact_number, gender)
+VALUES (2, 'Smith', 25, 'O-', 'Church Street', '134567','Male');
+INSERT INTO Donors (donor_id, name, age, blood_type, address, contact_number,gender)
+VALUES (3, 'Sarah Jane', 28, 'B+', 'CHENNAI', '5552468','Female');
+INSERT INTO Donors (donor_id, name, age, blood_type, address, contact_number,gender)
+VALUES (4, 'David Lee', 35, 'O+', 'MUMBAI', '5553698','Male');
+INSERT INTO Donors (donor_id, name, age, blood_type, address, contact_number,gender)
+VALUES (5, 'Sam', 33, 'O+', 'DEHLI', '9987654','Male');
+INSERT INTO Donors (donor_id, name, age, blood_type, address, contact_number,gender)
+VALUES (6, 'STEVEN', 40, 'A+', 'PUNE', '0987663','Male');
+INSERT INTO Donors (donor_id, name, age, blood_type, address, contact_number,gender)
+VALUES (7, 'Lena', 27, 'B-', 'MAHARASHTRA', '47836873','Female');
+/// We specify the value of the client and the contact number of the donor and the type of blood, as well as the address and gender of the donors
+SELECT * FROM DONORS;
+
+INSERT INTO Recipients (recipient_id, name, age, blood_type, address, contact_number)
+VALUES (1, 'Mary Johnson', 45, 'AB+', 'MUMBAI', '5559876');
+INSERT INTO Recipients (recipient_id, name, age, blood_type, address, contact_number)
+VALUES (2, 'Michael Brown', 50, 'B-', 'NEW DEHLI', '5555432');
+INSERT INTO Recipients (recipient_id, name, age, blood_type, address, contact_number)
+VALUES (3, 'Emily Davis', 60, 'A-', 'BANGALORE', '7777854');
+INSERT INTO Recipients (recipient_id, name, age, blood_type, address, contact_number)
+VALUES (4, 'James Wilson', 42, 'AB+', 'PUNE', '22341236');
+INSERT INTO Recipients(recipient_id, name, age, blood_type, address, contact_number)
+VALUES (5, 'Jennifer Adams', 33, 'O+', 'JAMMU & KASHMIR', '3339874');
+INSERT INTO Recipients(recipient_id, name, age, blood_type, address, contact_number)
+VALUES (6, 'Robert Thompson', 40, 'A+', 'NEPAL', '21343210');
+INSERT INTO Recipients(recipient_id, name, age, blood_type, address, contact_number)
+VALUES (7, 'Lisa Hernandez', 27, 'B-', 'HYEDRABAD', '9900997896');
+/// We specify the first and last name, age, blood type and their identification number
+SELECT * from Recipients;
+
+INSERT INTO BloodDonations (donation_id, donor_id, recipient_id, donation_date)
+VALUES (1, 1, 1, '2023-06-01');
+INSERT INTO BloodDonations (donation_id, donor_id, recipient_id, donation_date)
+VALUES (2, 2, 2, '2023-06-15');
+INSERT INTO BloodDonations (donation_id, donor_id, recipient_id, donation_date)
+VALUES (3, 3, 3, '2023-07-02');
+INSERT INTO BloodDonations (donation_id, donor_id, recipient_id, donation_date)
+VALUES (4, 4, 4, '2023-06-30');
+INSERT INTO BloodDonations (donation_id, donor_id, recipient_id, donation_date)
+VALUES (5, 5, 5, '2023-07-01');
+INSERT INTO BloodDonations (donation_id, donor_id, recipient_id, donation_date)
+VALUES (6, 6, 6, '2023-06-29');
+INSERT INTO BloodDonations (donation_id, donor_id, recipient_id, donation_date)
+VALUES (7, 7, 7, '2023-06-28');
+/// We indicate the date when the blood donation was made, the recipient and the amount of blood
+SELECT * FROM BloodDonations;
+
+INSERT INTO BloodInventory (blood_id, blood_type, quantity)
+VALUES (1, 'A+', 10);
+INSERT INTO BloodInventory (blood_id, blood_type, quantity)
+VALUES (2, 'O-', 5);
+INSERT INTO BloodInventory (blood_id, blood_type, quantity)
+VALUES (3, 'B+', 8);
+INSERT INTO BloodInventory (blood_id, blood_type, quantity)
+VALUES (4, 'AB-', 3);
+INSERT INTO BloodInventory (blood_id, blood_type, quantity)
+VALUES (5, 'O+', 6);
+INSERT INTO BloodInventory (blood_id, blood_type, quantity)
+VALUES (6, 'A-', 4);
+INSERT INTO BloodInventory (blood_id, blood_type, quantity)
+VALUES (7, 'B+', 2);
+/// We indicate the blood type and identification of the blood, its type and id of the donor
+SELECT * FROM BloodDonations;
+
+INSERT INTO BloodTypes (blood_type)
+VALUES ('A+');
+/// We get a positive blood type
+INSERT INTO BloodTypes (blood_type)
+VALUES ('O-');
+INSERT INTO BloodTypes (blood_type)
+VALUES ('B+');
+/// We determine the type of blood that comes out negative or positive blood type
+INSERT INTO BloodTypes (blood_type)
+VALUES ('AB-');
+INSERT INTO BloodTypes (blood_type)
+VALUES ('O+');
+/// We determine that the type of blood depends on certain values, such as genetics
+INSERT INTO BloodTypes (blood_type)
+VALUES ('A-');
+/// We indicate the blood type and determine that the blood type is negative
+SELECT * FROM BloodTypes;
+
+INSERT INTO Hospital (hospital_id, name, address, contact_number)
+VALUES (1, 'CITY HOSPITAL', 'BANGALORE', '99872468');
+INSERT INTO Hospital (hospital_id, name, address, contact_number)
+VALUES (2, 'BANGALORE HOSPITAL', 'BANGALORE', '987651357');
+INSERT INTO Hospital (hospital_id, name, address, contact_number)
+VALUES (3, 'GENERAL HOSPITAL', 'BANGALORE', '888767890');
+INSERT INTO Hospital (hospital_id, name, address, contact_number)
+VALUES (4, 'Regional Medical Center', 'MUMBAI', '77653698');
+INSERT INTO Hospital (hospital_id, name, address, contact_number)
+VALUES (5, 'University Hospital', 'CHENNAI', '99877892');
+INSERT INTO Hospital (hospital_id, name, address, contact_number)
+VALUES (6, 'Community Medical Center', 'PUNE', '99871235');
+INSERT INTO Hospital (hospital_id, name, address, contact_number)
+VALUES (7, рабо'PARK Hospital', 'DEHLI', '77654563');
+/// We show the place where the blood is taken and leave their names, as well as the address and contact numbers
+SELECT * FROM Hospital;
+
+-- To Update the Donors TABLE
+
+///  We indicate the blood type and who is the blood donor
+UPDATE Donors
+SET blood_type = 'O-'
+WHERE donor_id = 4;
+/// We indicate the blood type and who is the blood donor
+UPDATE Donors
+SET address = 'New York City', contact_number = '99872468'
+WHERE donor_id = 6;
+/// We show the address of the blood donation point and its contact number
+select * from donors;
+
+-- UPDATE THE RECIPANTS TABLE
+UPDATE Recipients
+SET age = 61, address = 'Australia'
+WHERE recipient_id = 3;
+/// we indicate the return of the donor and his country, as well as his location
+UPDATE Recipients
+SET blood_type = 'AB-', contact_number = '000000'
+WHERE recipient_id = 5;
+/// We get a prescription, as well as a contact number and blood type
+UPDATE Recipients 
+SET name = 'Abraham Lincon'
+WHERE recipient_id = 7;
+/// we receive the recipe and indicate to whom it is assigned
+select * from Recipients;
+
+-- Updating the Hospital TABLE
+
+UPDATE Hospital
+SET address = 'INDIAN NATIONAL HOSPITAL'
+WHERE hospital_id = 1;
+///We show the address of the hospital and its id so that it is easier for customers to navigate
+UPDATE Hospital
+SET name = 'City Medical Center', contact_number = '99998888'
+WHERE hospital_id = 3;
+/// We point to the selected hospital and give its address as well as its contact number
+
+UPDATE Hospital
+SET address = 'SOUTH KOREA', contact_number = '98767892'
+WHERE hospital_id = 5;
+/// We point to the selected hospital and give its address, as well as its contact number
+SELECT * FROM Hospital;
+
+SELECT * FROM Donors WHERE age > 30;
+/// We set a condition that the donor can be a person who is over 30 years old
+
+-- Query: Calculate the average age of male donors
+
+
+SELECT AVG(age) AS average_age FROM Donors WHERE gender = 'Male';
+/// Let's make sure that the system distributes whether the donor is a man or a woman
+-- Query: Calculate the total quantity of blood in the inventory
+
+SELECT SUM(quantity) AS total_quantity FROM BloodInventory;
+
+-- Query: Retrieve the names and contact numbers of donors in descending order of their names
+
+SELECT name, contact_number FROM Donors ORDER BY name DESC;
+/// We point to the selected hospital and give its address, as well as its contact number 
